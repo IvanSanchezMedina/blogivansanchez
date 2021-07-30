@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Post;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -14,6 +15,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->post = new Post();
+        $this->user = new User();
     }
 
     /**
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $posts= $this->post->orderBy('id','desc')
+        ->with('autor')
+        ->get();
+        return view('home',compact('posts'));
     }
 }
