@@ -17,7 +17,12 @@
 
                 @foreach ($post->comments as $comment)
                 <div>
-                    <label for="">{{ $comment->descripcion }} - <b>{{ $comment->autor->name }}</b></label>
+                    <label for="">{{ $comment->descripcion }} - <b>{{ $comment->autor->name }}</b>
+                        @if ($comment->autor->id ==   Auth::user()->id || $post->autor->id ==   Auth::user()->id)
+                        <a  class="float-right" href="{{ route('comment.destroy',$comment->id) }}"><i class="bi bi-trash"></i></a>
+                        
+                        @endif
+                    </label>
                 </div>
 
                 @endforeach

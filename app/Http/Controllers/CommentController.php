@@ -98,8 +98,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comments $comment)
     {
-        //
+         $comment->delete();
+        return back()->with('success','Comentario eliminado correctamente');
     }
 }

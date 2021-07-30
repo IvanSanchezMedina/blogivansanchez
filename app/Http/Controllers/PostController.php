@@ -84,9 +84,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        // return $post;
+        return view('Post.edit',compact('post'));
     }
 
     /**
@@ -96,9 +97,27 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        // return $request;
+        $rules = [
+            'titulo'=>'required|min:2|max:200',
+            'descripcion'=>'required|min:2|max:200',
+        ];
+        $messages = [
+            'titulo.min' => 'El titulo debe tener minimo 2 caracteres',
+            'titulo.max' => 'El titulo debe tener maximo 200 caracteres',
+            'descripcion.min' => 'El titulo debe tener minimo 2 caracteres',
+            'descripcion.max' => 'El titulo debe tener maximo 200 caracteres',
+        ];
+        $validacion=  $this->validate($request, $rules, $messages);
+
+        $updatePost= $this->post->where('id',$id)->update([
+            'titulo'=>$request->titulo,
+            'descripcion'=>$request->descripcion,
+        ]);
+
+        return redirect()->route('home')->with('success','Post actualizado correctamente');
     }
 
     /**
@@ -107,8 +126,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('home')->with('success','Post eliminado correctamente');
     }
 }

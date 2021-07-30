@@ -17,7 +17,12 @@
                     @foreach ($posts as $post)
                         <div class="card mt-4 mb-4">
                         <div class="card-header">
-                          {{ $post->titulo }}
+                          {{ $post->titulo }}  
+                          @if ($post->autor->id ==   Auth::user()->id )
+                          <a  class="float-right" href="{{ route('post.edit',$post->id) }}"><i class="bi bi-pencil-square"></i></a>
+                          <a  class="float-right" href="{{ route('post.destroy',$post->id) }}"><i class="bi bi-trash"></i></a>
+                          
+                          @endif
                         </div>
                         <div class="card-body">
                           <h5 class="card-title">{{ $post->autor->name }}</h5>
