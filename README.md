@@ -7,6 +7,36 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Instalar
+- Node.
+- Composer.
+
+## Instalacion de BLOG
+- Clonar repositorio.
+- Ejecutar npm install.
+- Ejecutar npm run dev.
+- Ejecutar 'cp .env.example .env'
+- Ejectutar comando 'php artisan key:generate'
+-  configurar conexion a base de datos 
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=database
+    DB_USERNAME=root
+    DB_PASSWORD=
+- Ejecutar 'composer du'   
+- Ejecutar comando 'php artisan migrate:refresh --seed'
+- Ejectuar comando 'php artisan serve'
+
+Se integraron usuarios predefinidos para agilizar el registro,
+
+- ivan@test.com
+- ana@test.com
+- ulises@test.com
+
+La contraseña es 123123123123 para todos.
+            
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
